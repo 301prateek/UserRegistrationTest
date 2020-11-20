@@ -1,57 +1,132 @@
-package com.uservalidation.main;
+package com.uservalidation.test;
 
-import java.util.Scanner;
-import java.util.regex.Pattern;
+import org.junit.Test;
+import org.junit.Assert;
 
-public class UserRegistration {
+import org.junit.Test;
 
-	public boolean validateFirstName(String name) {
-		String expression = "^[A-Z]{1}[a-z]{2,}$";
+import com.uservalidation.main.UserRegistration;
 
-		if(name.matches(expression))
-			return true;
-		else
-			return false;
+public class UserRegistrationTest {
+	
+	UserRegistration userregistration = new UserRegistration();
+
+	//Test for first name
+	@Test
+	public void givenFisrtName_WhenProper_ShouldReturnTrue() {
+		boolean result = userregistration.validateFirstName("Prateek");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenFisrtName_WhenHasThreeLetters_ShouldReturnTrue() {
+		boolean result = userregistration.validateFirstName("Leo");
+		Assert.assertTrue(result);
 	}
 
-	public boolean validateLastName(String name) {
-		String expression = "^[A-Z]{1}[a-z]{2,}$";
-
-		if(name.matches(expression))
-			return true;
-		else
-			return false;
+	@Test
+	public void givenFisrtName_WhenNotProrper_ShouldReturnFalse() {
+		boolean result = userregistration.validateFirstName("prateek");
+		Assert.assertFalse(result);
+	}
+	
+	//Test for last name
+	@Test
+	public void givenLastName_WhenProper_ShouldReturnTrue() {
+		boolean result = userregistration.validateFirstName("Patil");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenLastName_WhenHasThreeLetters_ShouldReturnTrue() {
+		boolean result = userregistration.validateFirstName("Mac");
+		Assert.assertTrue(result);
 	}
 
-	public boolean validateEmailAddress(String email) {
-		String expression = "^[0-9a-zA-Z]+([.])?([-_\\+])?([0-9A-Za-z])*[@]{1}([0-9A-Za-z])+[.]{1}[a-z)]+[.]*[a-z]*{2}$";
-
-		Pattern pattern = Pattern.compile(expression);
-		return pattern.matcher(email).matches();
+	@Test
+	public void givenLastName_WhenNotProrper_ShouldReturnFalse() {
+		boolean result = userregistration.validateFirstName("patil");
+		Assert.assertFalse(result);
 	}
-
-	public boolean validatePhoneNumber(String phoneNumber) {
-
-		String expression = "^[+]?[0-9]{2,3}[ ]+[6-9]{1}[0-9]{9}";
-
-		Pattern pattern = Pattern.compile(expression);
-		return pattern.matcher(phoneNumber).matches();
+	
+	//Test for email address
+	@Test
+	public void givenEmail1_WhenProper_ShouldReturnTrue() {
+		boolean result = userregistration.validateEmailAddress("abc@yahoo.com");
+		Assert.assertTrue(result);
 	}
-
-	public boolean validatePassword(String password) {
-
-		String expression = "^(?=.+[0-9])(?=.+[a-z])(?=.+[A-Z])(?=.*[a-zA-Z])(?=.+[!@#$%^&*]).{8,}$";
-
-		Pattern pattern = Pattern.compile(expression);
-		return pattern.matcher(password).matches();
+	
+	@Test
+	public void givenEmail2_WhenProper_ShouldReturnTrue() {
+		boolean result = userregistration.validateEmailAddress("abc-100@yahoo.com");
+		Assert.assertTrue(result);
 	}
-
-	public boolean moodAnalyser(String mood) {
-
-		if(mood.contains("Happy")) {
-			return true;
-		}
-		else
-			return false;
+	
+	@Test
+	public void givenEmail3_WhenNotProper_ShouldReturnFalse() {
+		boolean result = userregistration.validateEmailAddress("abc@gmail.com.aa.au");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenEmail4_WhenNotProper_ShouldReturnFalse() {
+		boolean result = userregistration.validateEmailAddress("abc@abc@yahoo.com.1a");
+		Assert.assertFalse(result);
+	}
+	
+	//Test for phone number
+	@Test
+	public void givenPhoneNumber1_WhenProper_ShouldReturnTrue() {
+		boolean result = userregistration.validatePhoneNumber("91 8974512356");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenPhoneNumber2_WhenProper_ShouldReturnTrue() {
+		boolean result = userregistration.validatePhoneNumber("+91 8974512356");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenPhoneNumber3_WhenNotProper_ShouldReturnFalse() {
+		boolean result = userregistration.validatePhoneNumber("91 1974512356");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenPhoneNumber4_WhenNotProper_ShouldReturnFalse() {
+		boolean result = userregistration.validatePhoneNumber("8974512356");
+		Assert.assertFalse(result);
+	}
+	
+	//Test for password
+	@Test
+	public void givenPassword1_WhenProper_ShouldReturnTrue() {
+		boolean result = userregistration.validatePassword("9@puryPL4");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenPassword2_WhenProper_ShouldReturnTrue() {
+		boolean result = userregistration.validatePassword("Yh7KL45$k@");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenPassword3_WhenProper_ShouldReturnFalse() {
+		boolean result = userregistration.validatePassword("Yh7KL45pk5");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenHappy_WhenAnalyseMood_ThenShouldReturnTrue() {
+		UserRegistration user = new UserRegistration();
+		Assert.assertTrue(user.moodAnalyser("Happy"));
+	}
+	
+	@Test
+	public void givenSad_WhenAnalyseMood_ThenShouldReturnFalse() {
+		UserRegistration user = new UserRegistration();
+		Assert.assertFalse(user.moodAnalyser("Sad"));
 	}
 }
