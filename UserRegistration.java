@@ -29,4 +29,13 @@ public class UserRegistration {
 		Pattern pattern = Pattern.compile(expression);
 		return pattern.matcher(email).matches();
 	}
+
+	public boolean validatePhoneNumber(String phoneNumber) {
+
+		String expression = "^[+]?[0-9]{2,3}[ ]+[6-9]{1}[0-9]{9}";
+
+		Pattern pattern = Pattern.compile(expression);
+		return pattern.matcher(phoneNumber).matches();
+	}
+
 }
