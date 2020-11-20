@@ -38,4 +38,11 @@ public class UserRegistration {
 		return pattern.matcher(phoneNumber).matches();
 	}
 
+	public boolean validatePassword(String password) {
+
+		String expression = "^(?=.+[0-9])(?=.+[a-z])(?=.+[A-Z])(?=.*[a-zA-Z])(?=.+[!@#$%^&*]).{8,}$";
+
+		Pattern pattern = Pattern.compile(expression);
+		return pattern.matcher(password).matches();
+	}
 }
