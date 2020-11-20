@@ -45,4 +45,13 @@ public class UserRegistration {
 		Pattern pattern = Pattern.compile(expression);
 		return pattern.matcher(password).matches();
 	}
+
+	public boolean moodAnalyser(String mood) {
+
+		if(mood.contains("Happy")) {
+			return true;
+		}
+		else
+			return false;
+	}
 }
