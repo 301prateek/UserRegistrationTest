@@ -13,4 +13,13 @@ public class UserRegistration {
 		else
 			return false;
 	}
+
+	public boolean validateLastName(String name) {
+		String expression = "^[A-Z]{1}[a-z]{2,}$";
+
+		if(name.matches(expression))
+			return true;
+		else
+			return false;
+	}
 }
